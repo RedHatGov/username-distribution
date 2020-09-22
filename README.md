@@ -2,6 +2,12 @@
 
 This web app distributes usernames and passwords to individuals who are taking part in an OpenShift based workshop. Deploying this app in OpenShift and exposing it publicly will give users a central access point, giving them their individual login credentials and links to lab guides.
 
+## Quick Start
+Simply process my template to use an ephemeral instance, passing `--param` to override any of the configuration options below.
+```
+oc process --param LAB_USER_PREFIX=user -f https://raw.githubusercontent.com/andykrohg/username-distribution/master/openshift/app-ephemeral.json | oc apply -f -
+```
+
 First, a user must enter their email so they can be identified:
 
 ![Request Account](screens/account-request.png)
