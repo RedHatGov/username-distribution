@@ -51,13 +51,6 @@
   ],
   "objects": [
     {
-      "apiVersion": "v1",
-      "kind": "Namespace",
-      "metadata": {
-        "name": "username-distribution"
-      }
-    },
-    {
       "apiVersion": "apps.openshift.io/v1",
       "kind": "DeploymentConfig",
       "metadata": {
@@ -67,8 +60,7 @@
           "app.kubernetes.io/instance": "username-distribution",
           "app.kubernetes.io/part-of": "username-distribution-app"
         },
-        "name": "username-distribution",
-        "namespace": "username-distribution"
+        "name": "username-distribution"
       },
       "spec": {
         "replicas": 1,
@@ -168,8 +160,7 @@
               ],
               "from": {
                 "kind": "ImageStreamTag",
-                "name": "username-distribution:latest",
-                "namespace": "username-distribution"
+                "name": "username-distribution:latest"
               }
             },
             "type": "ImageChange"
@@ -193,8 +184,7 @@
           "app.openshift.io/runtime": "",
           "app.openshift.io/runtime-version": "latest"
         },
-        "name": "username-distribution",
-        "namespace": "username-distribution"
+        "name": "username-distribution"
       },
       "spec": {
         "ports": [
@@ -229,8 +219,7 @@
           "app.openshift.io/runtime": "",
           "app.openshift.io/runtime-version": "latest"
         },
-        "name": "username-distribution",
-        "namespace": "username-distribution"
+        "name": "username-distribution"
       },
       "spec": {
         "port": {
@@ -252,8 +241,7 @@
       "apiVersion": "image.openshift.io/v1",
       "kind": "ImageStream",
       "metadata": {
-        "name": "username-distribution",
-        "namespace": "username-distribution"
+        "name": "username-distribution"
       },
       "spec": {
         "lookupPolicy": {
@@ -264,7 +252,7 @@
             "annotations": null,
             "from": {
               "kind": "DockerImage",
-              "name": "quay.io/evanshortiss/username-distribution:latest"
+              "name": "quay.io/akrohg/username-distribution:latest"
             },
             "generation": 1,
             "importPolicy": {},
