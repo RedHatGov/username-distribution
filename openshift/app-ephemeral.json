@@ -252,7 +252,7 @@
             "annotations": null,
             "from": {
               "kind": "DockerImage",
-              "name": "quay.io/akrohg/username-distribution:latest"
+              "name": "quay.io/redhatgov/username-distribution:latest"
             },
             "generation": 1,
             "importPolicy": {},

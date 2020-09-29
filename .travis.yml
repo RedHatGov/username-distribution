@@ -1,0 +1,13 @@
+dist: bionic
+language: minimal
+services:
+  - docker
+env:
+  - QUAY_PROJECT=redhatgov
+script:
+  - scripts/image.dockerbuild.sh
+deploy:
+  provider: script
+  script: scripts/image.push.sh
+  on:
+    branch: master

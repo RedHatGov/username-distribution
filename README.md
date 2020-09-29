@@ -9,7 +9,7 @@ Simply process my template to use an ephemeral instance, passing `--param` to ov
 oc new-project username-distribution
 
 # Process the template 
-oc process --param LAB_USER_PREFIX=user -f https://raw.githubusercontent.com/andykrohg/username-distribution/master/openshift/app-ephemeral.json | oc apply -f -
+oc process --param LAB_USER_PREFIX=user -f https://raw.githubusercontent.com/redhatgov/username-distribution/master/openshift/app-ephemeral.json | oc apply -f -
 ```
 
 First, a user must enter their email so they can be identified:
