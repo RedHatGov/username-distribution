@@ -5,6 +5,10 @@ This web app distributes usernames and passwords to individuals who are taking p
 ## Quick Start
 Simply process my template to use an ephemeral instance, passing `--param` to override any of the configuration options below.
 ```
+# Create a project for the username-distribution app to live
+oc new-project username-distribution
+
+# Process the template 
 oc process --param LAB_USER_PREFIX=user -f https://raw.githubusercontent.com/andykrohg/username-distribution/master/openshift/app-ephemeral.json | oc apply -f -
 ```
 
