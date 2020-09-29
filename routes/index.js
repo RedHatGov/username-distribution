@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config = require('../config');
 const log = require('barelog')
-const { urlencoded } = require('body-parser')
+const { urlencoded, json } = require('body-parser')
 const users = require('../lib/users')
 const { default: PQueue } = require('p-queue')
 
@@ -35,6 +35,36 @@ router.post('/request-account', urlencoded(), (req, res) => {
     log('user requested account with email:', req.body.email)
     req.session.email = req.body.email.trim()
     res.redirect('/')
+  }
+})
+
+
+// Support requesting a user account via JSON API
+router.post('/', json(), async (req, res) => {
+  const email = req.body.email
+
+  if (req.body.accessToken !== config.accounts.accessToken) {
+    res.status(401).json({
+      message: 'Invalid access token provided.'
+    })
+  } else if (!email) {
+    res.status(400).json({
+      message: 'Please include an "email" field in the request body.'
+    })
+  } else {
+    assigmentQ.add(async () => {
+      const user = await users.getAndAssignUser(req.headers['x-forwarded-for'] || req.connection.remoteAddress, email)
+
+      if (user) {
+        res.json({
+          username: user.username
+        })
+      } else {
+        res.status(429).json({
+          message: 'All available accounts are currently in use. Please try again later.'
+        })
+      }
+    })
   }
 })
 
